@@ -82,7 +82,7 @@ export default function User() {
               </div>
             </div>
             <div className="stats w-full rounded-lg shadow-md bg-base-100">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 xl:grid-cols-2">
                 {location && (
                   <div className="stat">
                     <div className="stat-title text-md">Location</div>

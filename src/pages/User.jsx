@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa'
+import normalizeUrl from 'normalize-url'
 
 import GithubContext from '../context/github/GithubContext'
 
@@ -31,6 +32,7 @@ export default function User() {
     public_gists,
     hireable,
   } = user
+  const blog_url = normalizeUrl(String(blog), { forceHttps: true })
 
   if (loading) {
     return <Spinner />
@@ -93,12 +95,12 @@ export default function User() {
                     <div className="stat-title text-md">Website</div>
                     <div className="stat-value text-lg">
                       <a
-                        href={`https://${blog}`}
+                        href={blog_url}
                         target="_blank"
                         rel="noreferrer"
                         className="font-semibold"
                       >
-                        {blog}
+                        {blog_url.replace('https://', '')}
                       </a>
                     </div>
                   </div>

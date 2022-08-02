@@ -32,7 +32,6 @@ export const GithubProvider = ({ children }) => {
         Authorization: `token ${GITHUB_TOKEN}`,
       },
     })
-    console.log(items)
     dispatch({
       type: 'GET_USERS',
       payload: items,

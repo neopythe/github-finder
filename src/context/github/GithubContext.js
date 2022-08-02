@@ -13,6 +13,7 @@ export const GithubProvider = ({ children }) => {
   const initialState = {
     users: [],
     user: {},
+    repos: [],
     loading: false,
   }
 
@@ -59,13 +60,36 @@ export const GithubProvider = ({ children }) => {
     }
   }
 
+  // get user repos
+  const getUserRepos = async (login) => {
+    setLoading()
+
+    const params = new URLSearchParams({
+      sort: 'created',
+      per_page: 10,
+    })
+
+    const { data } = await axios.get(
+      `${GITHUB_URL}/users/${login}/repos?${params}`,
+      {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+        },
+      }
+    )
+    dispatch({
+      type: 'GET_REPOS',
+      payload: data,
+    })
+  }
+
   const clearUsers = () => dispatch({ type: 'CLEAR_USERS' })
 
   const setLoading = () => dispatch({ type: 'SET_LOADING' })
 
   return (
     <GithubContext.Provider
-      value={{ ...state, searchUsers, clearUsers, getUser }}
+      value={{ ...state, searchUsers, clearUsers, getUser, getUserRepos }}
     >
       {children}
     </GithubContext.Provider>

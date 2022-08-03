@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
 
+import RepoItem from './RepoItem'
+
 export default function RepoList({ repos }) {
   return (
     <div className="card rounded-lg shadow-lg bg-base-100">
@@ -7,8 +9,8 @@ export default function RepoList({ repos }) {
         <h2 className="card-title text-3xl my-4 font-bold">
           Latest repositories
         </h2>
-        {repos.map((repo, index) => (
-          <h3 key={index}>{repo.name}</h3>
+        {repos.map((repo) => (
+          <RepoItem key={repo.id} repo={repo} />
         ))}
       </div>
     </div>

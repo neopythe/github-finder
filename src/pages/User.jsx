@@ -35,7 +35,8 @@ export default function User() {
     public_gists,
     hireable,
   } = user
-  const blog_url = normalizeUrl(String(blog), { forceHttps: true })
+
+  const blog_url = blog ? normalizeUrl(String(blog), { forceHttps: true }) : ''
 
   if (loading) {
     return <Spinner />

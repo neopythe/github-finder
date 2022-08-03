@@ -8,7 +8,7 @@ export default function UserSearch() {
   const [text, setText] = useState('')
 
   const { setAlert } = useContext(AlertContext)
-  const { dispatch, users, clearUsers } = useContext(GithubContext)
+  const { dispatch, users } = useContext(GithubContext)
 
   const handleChange = (event) => setText(event.target.value)
 
@@ -49,7 +49,10 @@ export default function UserSearch() {
       </div>
       {users.length > 0 && (
         <div>
-          <button onClick={clearUsers} className="btn btn-ghost btn-lg">
+          <button
+            onClick={() => dispatch({ type: 'CLEAR_USERS' })}
+            className="btn btn-ghost btn-lg"
+          >
             Clear
           </button>
         </div>

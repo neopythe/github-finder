@@ -35,6 +35,6 @@ export const getUserAndRepos = async (login) => {
     ])
     return { user: user.data, repos: repos.data }
   } catch (err) {
-    if (err.response.status === 404) window.location = '/notfound'
+    window.location = '/notfound'
   }
 }
